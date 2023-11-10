@@ -1,17 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Pokecard from './Pokecard';
+import './Pokedex.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function Pokedex(props) {
+    const { pokemon } = props;
+    return (
+        <div className="Pokedex">
+            <h2 className="Pokedex-title">Pokedex</h2>
+            <div className="Pokedex-cards">
+                {pokemon && pokemon.map(p => (
+                    <Pokecard
+                        key={p.id}
+                        id={p.id}
+                        name={p.name}
+                        type={p.type}
+                        base_experience={p.base_experience}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export default Pokedex;
